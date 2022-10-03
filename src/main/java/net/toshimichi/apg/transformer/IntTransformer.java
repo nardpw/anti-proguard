@@ -20,6 +20,7 @@ public class IntTransformer extends PatternTransformer {
         AbstractInsnNode i1 = from.get(0);
         AbstractInsnNode i2 = from.get(1);
         AbstractInsnNode i3 = from.get(2);
+
         Long l1 = OpcodeUtils.toLong(i1);
         if (l1 == null) return null;
         Long l2 = OpcodeUtils.toLong(i2);
@@ -47,6 +48,8 @@ public class IntTransformer extends PatternTransformer {
             result = l1 * l2;
         } else if (op == Opcodes.IDIV) {
             result = l1 / l2;
+        } else if (op == Opcodes.LCMP) {
+            result = l1.compareTo(l2);
         } else {
             return null;
         }
